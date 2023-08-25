@@ -15,6 +15,7 @@ let shortest_path = [];
 let obstacles = [];
 
 // Maybe, I'll work with classes in this one
+// You'll be much better of with using rows and coloumns instead of block number
 
 for (let i = 0; i < size * size; i++) {
   const grid_cell = document.createElement("div");
@@ -46,6 +47,22 @@ function cellClicked(event) {
   } else {
     obsPos();
   }
+}
+
+function startPos(event) {
+  const startPos = cells[current_cell];
+  start_pos = startPos;
+  startPos.setAttribute("style", "background-color:green");
+}
+function endPos(event) {
+  const endPos = cells[current_cell];
+  end_pos = endPos;
+  endPos.setAttribute("style", "background-color:red");
+}
+function obsPos(event) {
+  obstacles.push(current_cell);
+  const obsPos = cells[current_cell];
+  obsPos.setAttribute("style", "background-color:rgba(54, 54, 54, 0.829)");
 }
 
 // Your life will be much easier of you divided this into rows and coloumns instead of what the fuck you're doing
@@ -116,20 +133,14 @@ function explore(pos) {
 
 // This function needs to calculate the f_cost and g_cost of a cell
 // how would I go about calculating the f_cost and g_cost of a cell
+
+// I would need to use Manhattan distance to approximate the distance from one cell to another
 function calculateMin(arr) {}
 
-function startPos(event) {
-  const startPos = cells[current_cell];
-  start_pos = startPos;
-  startPos.setAttribute("style", "background-color:red");
-}
-function endPos(event) {
-  const endPos = cells[current_cell];
-  end_pos = endPos;
-  endPos.setAttribute("style", "background-color:green");
-}
-function obsPos(event) {
-  obstacles.push(current_cell);
-  const obsPos = cells[current_cell];
-  obsPos.setAttribute("style", "background-color:rgba(54, 54, 54, 0.829)");
+class Node {
+  is_closed() {}
+  is_open() {}
+  is_barrier() {}
+  is_start() {}
+  is_open() {}
 }
